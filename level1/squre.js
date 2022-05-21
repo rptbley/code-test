@@ -3,15 +3,23 @@ function solution(sizes) {
     const height = [];
 
     for(let i = 0; i < sizes.length; i++) {
-        width.push(sizes[i][0]);
-        height.push(sizes[i][1]);
+        const w = sizes[i][0];
+        const h = sizes[i][1];
+
+        if(w > h) {
+            width.push(w);
+            height.push(h);
+        } else {
+            width.push(h);
+            height.push(w);
+        }
     }
 
     const asc = (a, b) => a - b;
     width.sort(asc);
-    height.sort(asc);
+    height.sort(asc)
 
-
+    return width[width.length - 1] * height[height.length - 1];
 }
 
-console.log(solution([[10, 7], [12, 3], [8, 15], [14, 7], [5, 15]]))
+console.log(solution([[60, 50], [30, 70], [60, 30], [80, 40]]))
