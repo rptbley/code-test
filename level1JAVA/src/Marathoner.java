@@ -1,19 +1,27 @@
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.HashMap;
 
 class Marathoner {
     public String solution(String[] participant, String[] completion) {
-        Stack<String> completionStack = new Stack<>();
-        for(String c : completion) {
-            completionStack.push(c);
+        HashMap<String, Boolean> result = new HashMap<>();
+        for(String p : participant) {
+            if(result.containsKey(p)) {
+                result.replace(p, !result.get(p));
+            } else {
+                result.put(p, false);
+            }
         }
 
-        while(!completionStack.isEmpty()) {
-            String completeRunner = completionStack.pop();
-            int targetIndex = Arrays.asList(participant).indexOf(completeRunner);
-            if(targetIndex != -1) Arrays.asList(participant).remove(targetIndex);
+        for(String c : completion) {
+            result.replace(c, !result.get(c));
         }
-        String answer = participant[0];
+
+        String answer = "";
+        for(String p : participant) {
+            if(!result.get(p)) {
+                answer = p;
+            }
+        }
+
         return answer;
     }
 
