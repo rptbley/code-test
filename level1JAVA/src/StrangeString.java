@@ -1,19 +1,21 @@
 class StrangeString {
     public String solution(String s) {
-        String[] wordList = s.split(" ");
-        for(int i =0; i < wordList.length; i++) {
-            String target = wordList[i];
-
-            for(int j = 0; j < target.length(); j++) {
-                char targetChr = target.charAt(j);
-                target = target.replace(targetChr, j % 2 == 0 ? Character.toUpperCase(targetChr) : Character.toLowerCase(targetChr));
+        StringBuilder answer = new StringBuilder();
+        int index = 0;
+        String[] strList = s.split("");
+        for(int i = 0; i < strList.length; i++) {
+            String target = strList[i];
+            if(target.equals(" ")) {
+                index = 0;
+                answer.append(" ");
+                continue;
             }
-            wordList[i] = target;
-        }
-        return String.join(" ", wordList);
-    }
 
-    // 아직 못 품
+            answer.append(index % 2 == 0 ? target.toUpperCase() : target.toLowerCase());
+            index++;
+        }
+        return answer.toString();
+    }
 
     public static void main(String[] args) {
         StrangeString strangeString = new StrangeString();
