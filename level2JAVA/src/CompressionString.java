@@ -3,20 +3,13 @@ import java.util.List;
 
 class CompressionString {
     public int solution(String s) {
-        int answer = 0;
+        int answer = s.length();
 
-        if(s.length() == 1) return 1;
-
-        boolean isEven = s.length() % 2 == 0;
-        int divideNum = isEven ? s.length() / 2 : s.length() / 3;
+        int divideNum = s.length() / 2;
 
         for(int i = divideNum; i > 0; i--) {
             List<String> parsedStrList = parseStr(s, i);
             int parsedStrLength = checkList(parsedStrList);
-
-            if(i == divideNum) {
-                answer = parsedStrLength;
-            }
 
             if(answer > parsedStrLength) {
                 answer = parsedStrLength;
@@ -72,7 +65,7 @@ class CompressionString {
 
     public static void main(String[] args) {
         CompressionString compressionString = new CompressionString();
-        int result = compressionString.solution("xxxxxxxxxxyyy");
+        int result = compressionString.solution("ababcdcdababcdcd");
         System.out.println("result = " + result);
     }
 }
