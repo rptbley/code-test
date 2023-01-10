@@ -3,15 +3,18 @@ class KnightWeapon {
         int answer = 0;
 
         for(int i = 1; i <= number; i++) {
-            int sumOfGCD = 0;
+            double sqrt = Math.sqrt(i);
+            int sum = 0;
 
-            for(int k = 1; k <= i; k++) {
-                if(i % k == 0) {
-                    sumOfGCD++;
+            for(int k = 1; k <= sqrt; k++) {
+                if(k * k == i) {
+                    sum++;
+                } else if(i % k == 0) {
+                    sum += 2;
                 }
             }
 
-            answer += sumOfGCD > limit ? power : sumOfGCD;
+            answer += sum > limit ? power : sum;
         }
         return answer;
     }
