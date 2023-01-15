@@ -1,7 +1,19 @@
 class FoodFight {
     public String solution(int[] food) {
-        String answer = "";
-        return answer;
+        StringBuilder temp = new StringBuilder();
+
+        for(int targetFood = 1; targetFood < food.length; targetFood++) {
+            int foodCount = food[targetFood];
+
+            int setFoodCount = foodCount / 2;
+
+            temp.append(String.valueOf(targetFood).repeat(setFoodCount));
+        }
+
+        String front = temp.toString();
+        String back = temp.reverse().toString();
+
+        return front + "0" + back;
     }
 
     public static void main(String[] args) {
