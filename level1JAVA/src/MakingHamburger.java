@@ -1,8 +1,21 @@
 class MakingHamburger {
-    public int solution(int[] ingredient) {
+    int bread = 1;
+    int vegetable = 2;
+    int meat = 3;
+
+    public int solution(int[] ingredients) {
         int answer = 0;
+        int startIndex = 0;
+        int endIndex = 0;
 
-
+        for(int i = 0; i < ingredients.length - 3; i++) {
+            if(ingredients[i] == bread && ingredients[i + 1] == vegetable && ingredients[i + 2] == meat && ingredients[i + 3] == bread) {
+                answer++;
+                startIndex = i;
+                endIndex = i + 3;
+                break;
+            }
+        }
 
         return answer;
     }
