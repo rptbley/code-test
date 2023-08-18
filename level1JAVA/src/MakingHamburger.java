@@ -1,19 +1,23 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class MakingHamburger {
-    int bread = 1;
-    int vegetable = 2;
-    int meat = 3;
-
-    public int solution(int[] ingredients) {
+    public int solution(int[] ingredient) {
         int answer = 0;
-        int startIndex = 0;
-        int endIndex = 0;
 
-        for(int i = 0; i < ingredients.length - 3; i++) {
-            if(ingredients[i] == bread && ingredients[i + 1] == vegetable && ingredients[i + 2] == meat && ingredients[i + 3] == bread) {
-                answer++;
-                startIndex = i;
-                endIndex = i + 3;
-                break;
+        List<Integer> queue = new ArrayList<>();
+
+        for (int i : ingredient) {
+            queue.add(i);
+
+            int size = queue.size();
+            if(size >= 4) {
+                if(queue.get(size - 1) == 1 && queue.get(size - 2) == 3 && queue.get(size - 3) == 2 && queue.get(size - 4) == 1) {
+                    for(int j = 0; j < 4; j++) {
+                        queue.remove(queue.size() - 1);
+                    }
+                    answer++;
+                }
             }
         }
 
