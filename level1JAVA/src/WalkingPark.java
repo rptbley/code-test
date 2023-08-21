@@ -27,8 +27,8 @@ public class WalkingPark {
                 case "W":
                     if(answer[1] - n < 0) continue;
                     String[] wRow = park[answer[0]].split("");
-                    for(int i = 1; i < n; i++) {
-                        for(int j = answer[1]; j >= answer[1] - n; j--) {
+                    for(int i = 1; i <= n; i++) {
+                        for(int j = answer[1] - 1; j >= answer[1] - n; j--) {
                             if(wRow[j].equals("X")) {
                                 obstacleFlag = true;
                                 break;
@@ -39,7 +39,7 @@ public class WalkingPark {
                     break;
                 case "N":
                     if(answer[0] - n < 0) continue;
-                    for(int i = 1; i < n; i++) {
+                    for(int i = 1; i <= n; i++) {
                         String[] nRow = park[answer[0] - i].split("");
                         if(nRow[answer[1]].equals("X")) {
                             obstacleFlag = true;
@@ -51,8 +51,8 @@ public class WalkingPark {
                 case "E":
                     if(answer[1] + n >= maxWidth) continue;
                     String[] eRow = park[answer[0]].split("");
-                    for(int i = 1; i < n; i++) {
-                        for(int j = answer[1]; j < answer[1] + n; j++) {
+                    for(int i = 1; i <= n; i++) {
+                        for(int j = answer[1] + 1; j <= answer[1] + n; j++) {
                             if(eRow[j].equals("X")) {
                                 obstacleFlag = true;
                                 break;
@@ -63,7 +63,7 @@ public class WalkingPark {
                     break;
                 case "S":
                     if(answer[0] + n >= maxHeight) continue;
-                    for(int i = 1; i < n; i++) {
+                    for(int i = 1; i <= n; i++) {
                         String[] sRow = park[answer[0] + i].split("");
                         if(sRow[answer[1]].equals("X")) {
                             obstacleFlag = true;
@@ -78,8 +78,8 @@ public class WalkingPark {
     }
 
     public static void main(String[] args) {
-        String[] park = {"OSO","OOO","OXO","OOO"};
-        String[] routes = {"E 2","S 3","W 1"};
+        String[] park = {"OXXO", "XSXO", "XXXX"};
+        String[] routes = {"E 1","S 1"};
         int[] solution = new WalkingPark().solution(park, routes);
 
         for (int i : solution) {
